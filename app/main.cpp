@@ -20,24 +20,30 @@ nakon toga unosi se prvo slovo studenata za koje se želi statistika - program i
 
 
 int main()
-{	/*
-	student student;
+{	
+	std::string name;
 	int broj_stud;
-	unsigned ocjena;
+	int grade;
 
 
 	std::cout << "unesite broj studenata: ";
 	std::cin >> broj_stud;
+	results r(broj_stud);
 
 	for (int i = 0; i < broj_stud; i++) {
 		std::cout << "prvo unesite ime zatim ocjenu studenta: ";
-		std::cin >> student.name >> student.grade;
+		std::cin >> name >> grade;
+		r.add({ name, grade });
 	}
 
+	unsigned int ocjena;
 	std::cout << "unesite ocjenu za koju zelite statistiku: ";
 	std::cin >> ocjena;
-	std::out << "broj koliko puta se ocjena ponavljala je " << student.
-	*/
+	std::cout << "ponavljala se " << r.has_grade(ocjena) << " puta"<< std::endl;
 
-
+	char slovo;
+	std::cout << "unesite slovo: ";
+	std::cin >> slovo;
+	std::cout << r.starts_with_letter(slovo) << " imena pocinju sa slovom " << slovo << std::endl;
+	
 }

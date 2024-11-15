@@ -14,7 +14,7 @@ namespace vsite::oop::v3
     }
 
     void results::add(const student& s) {
-        if (counter < broj_elemenata) {  // Provjera da ne pređemo veličinu
+        if (counter < broj_elemenata) { 
             stud[counter] = s;
             counter++;
         }
@@ -40,11 +40,59 @@ namespace vsite::oop::v3
         return sadrzi;
     }
 
-    array ::array(const uint32_t size, const double value) : size(size), arr(new double[size])
-    {
-        for (uint32_t i = 0; i < size; i++) {
+
+
+
+
+
+	 
+
+
+    array::array(unsigned int size, double value) : len(size) {
+        arr = new double[len];
+        for (unsigned int i = 0; i < len; i++) {
             arr[i] = value;
         }
     }
+
+	unsigned int array::size() {
+		return len;
+	}
+
+	double array::at(unsigned int i) {
+		if (i >= 0 && i < len) {
+			return arr[i];
+		}
+		return 0;
+	}
+
+    void array::push_back(double i) {
+        unsigned int new_len = len + 1;
+        double* new_array = new double[new_len];
+        for (unsigned int j = 0; j < len; j++) {
+            new_array[j] = arr[j];
+        }
+        new_array[len] = i; 
+        delete[] arr;
+        arr = new_array;
+        len = new_len;
+    }
+
+	array::array(array&& other) : len(other.len), arr(other.arr) {
+		other.len = 0;
+		other.arr = nullptr;
+	}
+
+
+	array::array(const array& other) : len(other.len) {
+		arr = new double[len];
+		for (unsigned int i = 0; i < len; i++) {
+			arr[i] = other.arr[i];
+		}
+	}
+
+	array::~array() {
+		delete[] arr;
+	}
 
 }

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <string>
 
 namespace vsite::oop::v3
@@ -24,11 +24,21 @@ namespace vsite::oop::v3
     };
 
 
-    class array {
-        int sie{ 0 };
-        double* arr { nullptr };
+    class array
+    {
+    private:
+        unsigned int len;
+        double* arr = nullptr;
 
 
+    public:
+        array() = default;
+        array(const unsigned int size, const double value);
+        unsigned int size();
+        double at(const unsigned int i = 0);
+        void push_back(double i);
+        array(array&& other);
+        array(const array& other);
+        ~array(); 
     };
-
 }
